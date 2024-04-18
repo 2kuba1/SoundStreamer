@@ -5,22 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\tests\FileStreamer\FileStreamer.IntegrationTests\FileStreamer.IntegrationTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\FileStreamer\FileStreamer.UnitTests\FileStreamer.UnitTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\PlayLists\PlayLists.IntegrationTests\PlayLists.IntegrationTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\PlayLists\PlayLists.UnitTests\PlayLists.UnitTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\Search\Search.IntegrationTests\Search.IntegrationTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\Search\Search.UnitTests\Search.UnitTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\Users\Users.IntegrationTests\Users.IntegrationTests.csproj" />
-    <ProjectReference Include="..\..\..\tests\Users\Users.UnitTests\Users.UnitTests.csproj" />
-    <ProjectReference Include="..\..\API\API.csproj" />
-    <ProjectReference Include="..\..\FileStreamer\FileStreamer.Core\FileStreamer.Core.csproj" />
-    <ProjectReference Include="..\..\PlayLists\PlayLists.Core\PlayLists.Core.csproj" />
-    <ProjectReference Include="..\..\Search\Search.Core\Search.Core.csproj" />
-    <ProjectReference Include="..\..\Users\Users.Core\Users.Core.csproj" />
-    <ProjectReference Include="..\..\Worker\Worker.csproj" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
