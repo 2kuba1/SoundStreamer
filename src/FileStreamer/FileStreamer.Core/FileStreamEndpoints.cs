@@ -2,19 +2,16 @@
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Routing;
+using Shared.Configuration.Endpoints;
 
 namespace FileStreamer.Core;
 
-public static class FileStreamEndpoints
+public class FileStreamEndpoints() : IEndpoint
 {
-    public static WebApplication AddEndpoints(this WebApplication app)
-    {
-        app.MapGet("/", async context =>
+    public void MapEndpoint(IEndpointRouteBuilder app)
+        => app.MapGet("/", async (HttpContext context, IPublishEndpoint publishEndpoint) =>
         {
-            using var scope = app.Services.CreateScope();
-            var publishEndpoint = scope.ServiceProvider.GetService<IPublishEndpoint>();
-
             await publishEndpoint.Publish<OrderPlaced>(new OrderPlaced()
             {
                 OrderId = Guid.NewGuid()
@@ -22,7 +19,4 @@ public static class FileStreamEndpoints
 
             await context.Response.WriteAsync("Order placed");
         });
-
-        return app;
-    }
 }

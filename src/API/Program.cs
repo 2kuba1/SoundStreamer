@@ -1,11 +1,10 @@
 using FileStreamer.Core;
 using MassTransit;
 using PlayLists.Core;
+using Shared.Configuration.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -30,9 +29,8 @@ builder.Services.AddMassTransit(bus =>
 
 var app = builder.Build();
 
-app.AddEndpoints();
+app.MapEndpoints();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

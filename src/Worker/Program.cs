@@ -1,6 +1,4 @@
-using FileStreamer.Core;
 using MassTransit;
-using PlayLists.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
