@@ -1,15 +1,23 @@
 using FileStreamer.Core;
 using MassTransit;
 using PlayLists.Core;
+using Search.Core;
+using Serilog;
 using Shared.Configuration.Endpoints;
+using Users.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, cfg) =>
+    cfg.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddFileStream();
 builder.Services.AddPlayLists();
+builder.Services.AddUsers();
+builder.Services.AddSearch();
 
 builder.Services.AddMassTransit(bus =>
 {
@@ -30,6 +38,8 @@ builder.Services.AddMassTransit(bus =>
 var app = builder.Build();
 
 app.MapEndpoints();
+
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {

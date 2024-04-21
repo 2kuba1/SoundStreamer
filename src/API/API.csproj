@@ -5,17 +5,21 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FileStreamer\FileStreamer.Core\FileStreamer.Core.csproj" />
     <ProjectReference Include="..\PlayLists\PlayLists.Core\PlayLists.Core.csproj" />
+    <ProjectReference Include="..\Search\Search.Core\Search.Core.csproj" />
+    <ProjectReference Include="..\Users\Users.Core\Users.Core.csproj" />
   </ItemGroup>
 
 </Project>
