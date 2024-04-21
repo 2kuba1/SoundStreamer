@@ -1,0 +1,29 @@
+services: 
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: SoundStreamerDb
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+      MONGO_INITDB_DATABASE: SoundStreamerDb
+    ports:
+      - '27017:27017'
+    volumes:
+      - mognodata:/var/lib/mongodb/data
+  rabbitmq:
+      image: rabbitmq:3-management-alpine
+      ports:
+        - '5672:5672'
+        - '15672:15672'
+volumes:
+  pgdata:
+  mognodata:
