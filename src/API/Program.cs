@@ -4,6 +4,7 @@ using PlayLists.Core;
 using Search.Core;
 using Serilog;
 using Shared.Configuration.Endpoints;
+using Shared.Services;
 using Users.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +17,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddFileStream();
 builder.Services.AddPlayLists();
-builder.Services.AddUsers();
+builder.Services.AddUsers(builder.Configuration);
 builder.Services.AddSearch();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddMassTransit(bus =>
 {
@@ -38,6 +43,9 @@ builder.Services.AddMassTransit(bus =>
 var app = builder.Build();
 
 app.MapEndpoints();
+
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseSerilogRequestLogging();
 
