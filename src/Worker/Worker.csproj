@@ -8,11 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FileStreamer\FileStreamer.Core\FileStreamer.Core.csproj" />
     <ProjectReference Include="..\PlayLists\PlayLists.Core\PlayLists.Core.csproj" />
+    <ProjectReference Include="..\Search\Search.Core\Search.Core.csproj" />
+    <ProjectReference Include="..\Users\Users.Core\Users.Core.csproj" />
   </ItemGroup>
 
 </Project>
