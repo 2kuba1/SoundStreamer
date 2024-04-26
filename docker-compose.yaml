@@ -4,21 +4,11 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: SoundStreamerDb
+      POSTGRES_MULTIPLE_DATABASES: SoundStreamerDb-Users, SoundStreamerDb-Music, 
     ports:
       - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
-  mongodb:
-    image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123
-      MONGO_INITDB_DATABASE: SoundStreamerDb
-    ports:
-      - '27017:27017'
-    volumes:
-      - mognodata:/var/lib/mongodb/data
   rabbitmq:
       image: rabbitmq:3-management-alpine
       ports:
@@ -27,4 +17,3 @@ services:
   
 volumes:
   pgdata:
-  mognodata:
