@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FileStreamer\FileStreamer.Core\FileStreamer.Core.csproj" />
+    <ProjectReference Include="..\Music\Music.Core\Music.Core.csproj" />
     <ProjectReference Include="..\PlayLists\PlayLists.Core\PlayLists.Core.csproj" />
     <ProjectReference Include="..\Search\Search.Core\Search.Core.csproj" />
     <ProjectReference Include="..\Users\Users.Core\Users.Core.csproj" />

@@ -7,12 +7,15 @@ internal static class Extensions
 {
     internal static class AddModuleToBus
     {
-        public static void Add(IBusRegistrationConfigurator bus, Assembly? type)
+        public static void Add(IBusRegistrationConfigurator bus, IEnumerable<Assembly?> assemblies)
         {
-            bus.AddConsumers(type);
-            bus.AddSagaStateMachines(type);
-            bus.AddSagas(type);
-            bus.AddActivities(type);
+            foreach (var assembly in assemblies)
+            {
+                bus.AddConsumers(assembly);
+                bus.AddSagaStateMachines(assembly);
+                bus.AddSagas(assembly);
+                bus.AddActivities(assembly);
+            }
         }
     }
 }

@@ -14,9 +14,7 @@ public static class Extensions
         services.AddEndpoints(Assembly.GetExecutingAssembly());
 
         services.AddDbContext<UserDbContext>(opt =>
-        {
-            opt.UseNpgsql(configuration.GetConnectionString("UsersConnectionString"));
-        });
+            opt.UseNpgsql(configuration.GetConnectionString("UsersConnectionString")));
 
         return services;
     }

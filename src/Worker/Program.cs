@@ -21,11 +21,16 @@ builder.Host.UseSerilog((host, log) =>
 builder.Services.AddMassTransit(bus =>
 {
     bus.SetKebabCaseEndpointNameFormatter();
-    
-    Extensions.AddModuleToBus.Add(bus, Assembly.GetAssembly(typeof(Search.Core.Extensions)));
-    Extensions.AddModuleToBus.Add(bus, Assembly.GetAssembly(typeof(Users.Core.Extensions)));
-    Extensions.AddModuleToBus.Add(bus, Assembly.GetAssembly(typeof(FileStreamer.Core.Extensions)));
-    Extensions.AddModuleToBus.Add(bus, Assembly.GetAssembly(typeof(PlayLists.Core.Extensions)));
+
+    Extensions.AddModuleToBus.Add(bus, new List<Assembly?>()
+    {
+        Assembly.GetAssembly(typeof(Search.Core.Extensions)),
+        Assembly.GetAssembly(typeof(Users.Core.Extensions)),
+        Assembly.GetAssembly(typeof(FileStreamer.Core.Extensions)),
+        Assembly.GetAssembly(typeof(FileStreamer.Core.Extensions)),
+        Assembly.GetAssembly(typeof(PlayLists.Core.Extensions)),
+        Assembly.GetAssembly(typeof(Music.Core.Extensions)),
+    });
 
     bus.UsingRabbitMq((context, configurator) =>
     {

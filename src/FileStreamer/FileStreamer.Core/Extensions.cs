@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 using Shared.Configuration.Endpoints;
 
 namespace FileStreamer.Core;

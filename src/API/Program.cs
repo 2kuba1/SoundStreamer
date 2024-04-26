@@ -1,5 +1,6 @@
 using FileStreamer.Core;
 using MassTransit;
+using Music.Core;
 using PlayLists.Core;
 using Search.Core;
 using Serilog;
@@ -19,6 +20,7 @@ builder.Services.AddFileStream();
 builder.Services.AddPlayLists();
 builder.Services.AddUsers(builder.Configuration);
 builder.Services.AddSearch();
+builder.Services.AddMusic(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
 
@@ -27,7 +29,7 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddMassTransit(bus =>
 {
     bus.SetKebabCaseEndpointNameFormatter();
-    
+
     bus.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(builder.Configuration["RabbitMq:Host"], "/", cfg =>
