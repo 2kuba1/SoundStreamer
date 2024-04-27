@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Music.Core.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class FixMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace Music.Core.Database.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     ThumbnailUrl = table.Column<string>(type: "text", nullable: false),
                     FileUrl = table.Column<string>(type: "text", nullable: false),
-                    CreatedBy = table.Column<Guid>(type: "uuid", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uuid", nullable: false),
                     LatModifiedBy = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)

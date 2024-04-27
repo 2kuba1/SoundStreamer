@@ -1,5 +1,8 @@
+using API.Outbox;
 using FileStreamer.Core;
+using Mapster;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Music.Core;
 using PlayLists.Core;
 using Search.Core;
@@ -16,6 +19,9 @@ builder.Host.UseSerilog((context, cfg) =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<OutboxDbContext>(cfg =>
+    cfg.UseNpgsql(builder.Configuration.GetConnectionString("OutboxConnectionString")));
+
 builder.Services.AddFileStream();
 builder.Services.AddPlayLists();
 builder.Services.AddUsers(builder.Configuration);
@@ -30,6 +36,14 @@ builder.Services.AddMassTransit(bus =>
 {
     bus.SetKebabCaseEndpointNameFormatter();
 
+    bus.AddEntityFrameworkOutbox<OutboxDbContext>(cfg =>
+    {
+        cfg.QueryDelay = TimeSpan.FromSeconds(10);
+
+        cfg.UsePostgres();
+        cfg.UseBusOutbox();
+    });
+
     bus.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(builder.Configuration["RabbitMq:Host"], "/", cfg =>
@@ -41,6 +55,7 @@ builder.Services.AddMassTransit(bus =>
     });
 });
 
+builder.Services.AddMapster();
 
 var app = builder.Build();
 

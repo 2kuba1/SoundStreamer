@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Shared.Common;
 using Shared.Services;
@@ -12,9 +13,9 @@ public class MusicDbContext(DbContextOptions<MusicDbContext> options, ICurrentUs
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

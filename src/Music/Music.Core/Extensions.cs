@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Mapster;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +22,7 @@ public static class Extensions
 
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-
-        services.AddMapster();
-
+        
         return services;
     }
 }

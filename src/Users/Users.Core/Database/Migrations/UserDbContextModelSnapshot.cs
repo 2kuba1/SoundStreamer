@@ -53,11 +53,11 @@ namespace Users.Core.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("LatModifiedBy")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("LatName")
-                        .HasColumnType("text");
 
                     b.Property<int>("Role")
                         .ValueGeneratedOnAdd()

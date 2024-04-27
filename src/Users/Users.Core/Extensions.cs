@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,10 @@ public static class Extensions
 
         services.AddDbContext<UserDbContext>(opt =>
             opt.UseNpgsql(configuration.GetConnectionString("UsersConnectionString")));
+
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
 
         return services;
     }

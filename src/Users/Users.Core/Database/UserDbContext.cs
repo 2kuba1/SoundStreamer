@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Shared.Common;
 using Shared.Services;
@@ -31,8 +32,8 @@ public class UserDbContext(DbContextOptions<UserDbContext> options, ICurrentUser
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

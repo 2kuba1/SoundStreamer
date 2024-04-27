@@ -18,7 +18,7 @@ internal class AddMusicEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
         =>
-            app.MapPost("/api/AddMusic",
+            app.MapPost("/api/music/addMusic",
                 async (AddMusicCommand.AddMusicBody body, [FromServices] IMediator mediator) =>
                 {
                     await mediator.Send(new AddMusicCommand(body));

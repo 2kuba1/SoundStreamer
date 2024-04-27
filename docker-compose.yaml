@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_MULTIPLE_DATABASES: SoundStreamerDb-Users, SoundStreamerDb-Music, 
+      POSTGRES_MULTIPLE_DATABASES: SoundStreamerDb-Users, SoundStreamerDb-Music, SoundStreamerDb-Outbox
     ports:
       - '5432:5432'
     volumes:

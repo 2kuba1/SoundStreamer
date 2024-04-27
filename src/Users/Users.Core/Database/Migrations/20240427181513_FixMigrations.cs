@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Users.Core.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class FixMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace Users.Core.Database.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Username = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: true),
-                    LatName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: false),
                     HashedPassword = table.Column<string>(type: "text", nullable: false),
                     EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),

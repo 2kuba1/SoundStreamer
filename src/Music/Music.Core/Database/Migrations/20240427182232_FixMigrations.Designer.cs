@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Music.Core.Database.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    [Migration("20240426191633_AddMusicConfiguration")]
-    partial class AddMusicConfiguration
+    [Migration("20240427182232_FixMigrations")]
+    partial class FixMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

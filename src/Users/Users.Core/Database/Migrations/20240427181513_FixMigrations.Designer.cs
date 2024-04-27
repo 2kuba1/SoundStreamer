@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Music.Core.Database;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Users.Core.Database;
 
 #nullable disable
 
-namespace Music.Core.Database.Migrations
+namespace Users.Core.Database.Migrations
 {
-    [DbContext(typeof(MusicDbContext))]
-    [Migration("20240426191150_Init")]
-    partial class Init
+    [DbContext(typeof(UserDbContext))]
+    [Migration("20240427181513_FixMigrations")]
+    partial class FixMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Music.Core.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Music.Core.Entities.Music", b =>
+            modelBuilder.Entity("Users.Core.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,31 +37,43 @@ namespace Music.Core.Database.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("FileUrl")
+                    b.Property<bool>("EmailConfirmed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("HashedPassword")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("LatModifiedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Role")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
 
-                    b.Property<string>("ThumbnailUrl")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Musics");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
